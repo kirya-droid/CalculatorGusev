@@ -1,0 +1,730 @@
+[
+  {
+    "name": "Рассветный оранжевый",
+    "article": "О01Э1/70-300",
+    "price": 150.0,
+    "fraction": "70-300 мм",
+    "color": "Оранжевая",
+    "image": "images\\Steklo0995.jpg"
+  },
+  {
+    "name": "Таинственная ночь",
+    "article": "З36Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\IMG_4001.jpg"
+  },
+  {
+    "name": "Совиньон блан",
+    "article": "З06Э1/70-150",
+    "price": 58.0,
+    "fraction": "70-150 мм",
+    "color": "Зелёная",
+    "image": "images\\56. Steklo0820.jpg"
+  },
+  {
+    "name": "Салатовая зелень",
+    "article": "З29Э1/70-300",
+    "price": 90.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0936.jpg"
+  },
+  {
+    "name": "Немецкий рислинг",
+    "article": "З07Э1/70-300",
+    "price": 150.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0825.jpg"
+  },
+  {
+    "name": "Бирюзовый намёк",
+    "article": "Г17Э1/70-300",
+    "price": 60.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\IMG_3573.jpg"
+  },
+  {
+    "name": "Игристая бирюза",
+    "article": "Г11Э1/70-300",
+    "price": 70.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\IMG_3569.jpg"
+  },
+  {
+    "name": "Облака над Гаити",
+    "article": "Г10Э1/70-300",
+    "price": 110.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\IMG_3582.jpg"
+  },
+  {
+    "name": "Туман Лондона",
+    "article": "М22Э1/70-300",
+    "price": 160.0,
+    "fraction": "70-300 мм",
+    "color": "Монохром",
+    "image": "images\\IMG_3588.jpg"
+  },
+  {
+    "name": "Японская матча",
+    "article": "З30Э1/70-300",
+    "price": 60.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\IMG_5913.jpg"
+  },
+  {
+    "name": "Прозрачное стекло",
+    "article": "М21Э1/70-300",
+    "price": 110.0,
+    "fraction": "70-300 мм",
+    "color": "Монохром",
+    "image": "images\\IMG_5947.jpg"
+  },
+  {
+    "name": "Полуденный синий",
+    "article": "Г13Э1/30-80",
+    "price": 165.0,
+    "fraction": "30-150 мм",
+    "color": "Голубая",
+    "image": "images\\"
+  },
+  {
+    "name": "Медовый глинтвейн",
+    "article": "К08Э1/70-300",
+    "price": 350.0,
+    "fraction": "70-300 мм",
+    "color": "Красная",
+    "image": "images\\IMG_5918.jpg"
+  },
+  {
+    "name": "Застывшая смола",
+    "article": "О02Э1/70-300",
+    "price": 350.0,
+    "fraction": "70-300 мм",
+    "color": "Оранжевая",
+    "image": "images\\Steklo0814.jpg"
+  },
+  {
+    "name": "Индийская бирюза",
+    "article": "Г02Э1/70-300",
+    "price": 160.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\Steklo0985.jpg"
+  },
+  {
+    "name": "Сказочный малахит",
+    "article": "З28Э1/70-300",
+    "price": 320.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0916.jpg"
+  },
+  {
+    "name": "Драгоценный синий",
+    "article": "С03Э1/70-300",
+    "price": 140.0,
+    "fraction": "70-300 мм",
+    "color": "Синяя",
+    "image": "images\\Steklo1014.jpg"
+  },
+  {
+    "name": "Прозрачный небесный",
+    "article": "Г03Э1/70-300",
+    "price": 110.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\Steklo0808.jpg"
+  },
+  {
+    "name": "Холодное молоко",
+    "article": "М08Э1/70-300",
+    "price": 100.0,
+    "fraction": "70-300 мм",
+    "color": "Монохром",
+    "image": "images\\Steklo0901.jpg"
+  },
+  {
+    "name": "Изумрудный зелёный",
+    "article": "З26Э1/70-300",
+    "price": 50.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0909.jpg"
+  },
+  {
+    "name": "Лунный камень",
+    "article": "З02Э1/70-300",
+    "price": 280.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0992.jpg"
+  },
+  {
+    "name": "Альпийское молоко",
+    "article": "З14Э1/70-300",
+    "price": 60.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0948.jpg"
+  },
+  {
+    "name": "Бирюзовая искра",
+    "article": "Г04Э1/70-300",
+    "price": 70.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\Steklo0978.jpg"
+  },
+  {
+    "name": "Морской зелёный",
+    "article": "З04Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0960.jpg"
+  },
+  {
+    "name": "Табачный зелёный",
+    "article": "З08Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0919.jpg"
+  },
+  {
+    "name": "Снежный шторм",
+    "article": "М07Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Монохром",
+    "image": "images\\Steklo0897.jpg"
+  },
+  {
+    "name": "Тёплое молоко",
+    "article": "М09Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Монохром",
+    "image": "images\\Steklo0981.jpg"
+  },
+  {
+    "name": "Туманный синий",
+    "article": "С05Э1/20-70",
+    "price": 64.0,
+    "fraction": "20-70 мм",
+    "color": "Синяя",
+    "image": "images\\Steklo1025.jpg"
+  },
+  {
+    "name": "Газированный аквамарин",
+    "article": "З19Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\69. Steklo0925.jpg"
+  },
+  {
+    "name": "Луговой зелёный",
+    "article": "З11Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0920.jpg"
+  },
+  {
+    "name": "Серый топаз",
+    "article": "М05Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Монохром",
+    "image": "images\\4. Steklo0764.jpg"
+  },
+  {
+    "name": "Морозный полдень",
+    "article": "З13Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\63. Steklo0954.jpg"
+  },
+  {
+    "name": "Лазурная бирюза",
+    "article": "Г18Э1/70-300",
+    "price": 65.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\Изображение WhatsApp 2024-08-20 в 11.05.29_29e7aa76.jpg"
+  },
+  {
+    "name": "Лавровая пряность",
+    "article": "З43Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0940.jpg"
+  },
+  {
+    "name": "Морозная бирюза",
+    "article": "Г07Э1/70-300",
+    "price": 60.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\"
+  },
+  {
+    "name": "Зелёный чай",
+    "article": "З16Э1/20-70",
+    "price": 90.0,
+    "fraction": "20-70 мм",
+    "color": "Зелёная",
+    "image": "images\\66. Steklo0959.jpg"
+  },
+  {
+    "name": "Бирюзовая акварель",
+    "article": "Г19Э1/70-300",
+    "price": 150.0,
+    "fraction": "70-300 мм",
+    "color": "Голубая",
+    "image": "images\\IMG_6903.jpg"
+  },
+  {
+    "name": "Звёздное небо",
+    "article": "С12Э1/70-300",
+    "price": 120.0,
+    "fraction": "70-300 мм",
+    "color": "Синяя",
+    "image": "images\\Steklo0537 1.jpg"
+  },
+  {
+    "name": "Дух огня",
+    "article": "К13Э1/30-120",
+    "price": 370.0,
+    "fraction": "30-120 мм",
+    "color": "Красная",
+    "image": "images\\Steklo0862.jpg"
+  },
+  {
+    "name": "Глубокое озеро",
+    "article": "З41Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\image-18-11-22-08-43-17.jpeg"
+  },
+  {
+    "name": "Осенняя роса",
+    "article": "З39Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0493 1.jpg"
+  },
+  {
+    "name": "Бирюзовая глубина",
+    "article": "З37Э1/70-300",
+    "price": 70.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0496 1.jpg"
+  },
+  {
+    "name": "Ультрамариновые мечты",
+    "article": "С09Э1/20-70",
+    "price": 165.0,
+    "fraction": "20-70 мм",
+    "color": "Синяя",
+    "image": "images\\Steklo0508 1.jpg"
+  },
+  {
+    "name": "Тёмная зелень",
+    "article": "З25Э1/70-300",
+    "price": 38.0,
+    "fraction": "70-300 мм",
+    "color": "Зелёная",
+    "image": "images\\Steklo0924.jpg"
+  },
+  {
+    "name": "Солёная карамель",
+    "article": "О03Э1/70-300",
+    "price": 280.0,
+    "fraction": "70-300 мм",
+    "color": "Оранжевая",
+    "image": "images\\Steklo0488 1.jpg"
+  },
+  {
+    "name": "Тёмная планета",
+    "article": "С11Э1/70-300",
+    "price": 100.0,
+    "fraction": "70-300 мм",
+    "color": "Синяя",
+    "image": "images\\IMG_3996.jpg"
+  },
+  {
+    "name": "Чёрная пантера",
+    "article": "М10Б1/70-300",
+    "price": 160.0,
+    "fraction": "блоки",
+    "color": "Монохром",
+    "image": "images\\Steklo_1304_0983.jpg"
+  },
+  {
+    "name": "Солёная карамель",
+    "article": "О03Б1/70-300",
+    "price": 380.0,
+    "fraction": "блоки",
+    "color": "Оранжевая",
+    "image": "images\\Steklo_1304_0988.jpg"
+  },
+  {
+    "name": "Оливковая дымка",
+    "article": "З09Б1/70-300",
+    "price": 210.0,
+    "fraction": "блоки",
+    "color": "Зелёная",
+    "image": "images\\Steklo_1304_1003.jpg"
+  },
+  {
+    "name": "Немецкий рислинг",
+    "article": "З07Б1/70-300",
+    "price": 250.0,
+    "fraction": "блоки",
+    "color": "Зелёная",
+    "image": "images\\Steklo_1304_0937.jpg"
+  },
+  {
+    "name": "Мятный леденец",
+    "article": "З24Б1/70-300",
+    "price": 200.0,
+    "fraction": "блоки",
+    "color": "Зелёная",
+    "image": "images\\Steklo_1304_0941.jpg"
+  },
+  {
+    "name": "Луговой зелёный",
+    "article": "З11Б1/70-300",
+    "price": 200.0,
+    "fraction": "блоки",
+    "color": "Зелёная",
+    "image": "images\\Steklo_1304_0928.jpg"
+  },
+  {
+    "name": "Лавандовое утро",
+    "article": "Ф01Б1/70-300",
+    "price": 680.0,
+    "fraction": "блоки",
+    "color": "Фиолетовая",
+    "image": "images\\Steklo_1304_0947.jpg"
+  },
+  {
+    "name": "Зелёный чай",
+    "article": "З16Б1/70-300",
+    "price": 200.0,
+    "fraction": "блоки",
+    "color": "Зелёная",
+    "image": "images\\WhatsApp Image 2023-05-11 at 14.47.47 (3).jpeg"
+  },
+  {
+    "name": "Клюква в сахаре",
+    "article": "К02Э1/20-70",
+    "price": 240.0,
+    "fraction": "хрусталь",
+    "color": "Красная",
+    "image": "images\\Steklo_1304_0978.jpg"
+  },
+  {
+    "name": "Извержение вулкана",
+    "article": "Р13Э1/20-70",
+    "price": 240.0,
+    "fraction": "хрусталь",
+    "color": "Разноцветная",
+    "image": "images\\Steklo_1304_0974.jpg"
+  },
+  {
+    "name": "Японская матча",
+    "article": "330Э1/300-400",
+    "price": 110.0,
+    "fraction": "300-400 мм",
+    "color": "Зелёная",
+    "image": "images\\IMG_6829.jpg"
+  },
+  {
+    "name": "Камни стеклянные цв. Луговой зелёный",
+    "article": "З11Э1/300+",
+    "price": 56.0,
+    "fraction": "глыбы",
+    "color": "Зелёная",
+    "image": "images\\WhatsApp Image 2023-04-20 at 13.50.38.jpg"
+  },
+  {
+    "name": "Абсолют",
+    "article": "М02Э4/20-350",
+    "price": 4200.0,
+    "fraction": "хрусталь",
+    "color": "Монохром",
+    "image": "images\\Stakan220275.jpg"
+  },
+  {
+    "name": "Шампань",
+    "article": "Ж09Э4/20-350",
+    "price": 4600.0,
+    "fraction": "хрусталь",
+    "color": "Жёлтая",
+    "image": "images\\Stakan220252.jpg"
+  },
+  {
+    "name": "Янтарный бриллиант",
+    "article": "О06Э1/20-70",
+    "price": 240.0,
+    "fraction": "хрусталь",
+    "color": "Оранжевая",
+    "image": "images\\Steklo0774.jpg"
+  },
+  {
+    "name": "Праздничный жёлтый",
+    "article": "Ж03Э1/70-300",
+    "price": 460.0,
+    "fraction": "хрусталь",
+    "color": "Жёлтая",
+    "image": "images\\Steklo1022.jpg"
+  },
+  {
+    "name": "Прозрачный бриллиантовый",
+    "article": "М02Э1/70-300",
+    "price": 200.0,
+    "fraction": "хрусталь",
+    "color": "Монохром",
+    "image": "images\\Steklo0803.jpg"
+  },
+  {
+    "name": "Оливковая дымка",
+    "article": "З09Э1/70-300",
+    "price": 110.0,
+    "fraction": "хрусталь",
+    "color": "Зелёная",
+    "image": "images\\Steklo0545 1.jpg"
+  },
+  {
+    "name": "Лёгкая прохлада",
+    "article": "З40Э1/70-300",
+    "price": 230.0,
+    "fraction": "хрусталь",
+    "color": "Зелёная",
+    "image": "images\\Steklo0539 1.jpg"
+  },
+  {
+    "name": "Горный бразильский",
+    "article": "М18Э1/20-70",
+    "price": 160.0,
+    "fraction": "хрусталь",
+    "color": "Монохром",
+    "image": "images\\IMG_5935.jpg"
+  },
+  {
+    "name": "Кварцевое стекло",
+    "article": "М01Э1/70-120",
+    "price": 3000.0,
+    "fraction": "70-120 мм",
+    "color": "Монохром",
+    "image": "images\\IMG_3860.jpg"
+  },
+  {
+    "name": "Шарики стеклянные Голубые не шарики",
+    "article": "Г16Ш0/20",
+    "price": 80.0,
+    "fraction": "20 мм",
+    "color": "Голубая",
+    "image": "images\\IMG_5955.jpg"
+  },
+  {
+    "name": "Шарики Коричневые",
+    "article": "М24Ш0/20",
+    "price": 80.0,
+    "fraction": "20 мм",
+    "color": "Монохром",
+    "image": "images\\IMG_3821.jpg"
+  },
+  {
+    "name": "Шарики Зелёные",
+    "article": "З34Ш0/20",
+    "price": 80.0,
+    "fraction": "20 мм",
+    "color": "Зелёная",
+    "image": "images\\IMG_3831.jpg"
+  },
+  {
+    "name": "Шарики Голубые",
+    "article": "Г15Ш0/20",
+    "price": 200.0,
+    "fraction": "20 мм",
+    "color": "Голубая",
+    "image": "images\\IMG_3827.jpg"
+  },
+  {
+    "name": "Шарики смесь Зелёные + Светло-зелёные",
+    "article": "З44Ш0/20",
+    "price": 80.0,
+    "fraction": "20 мм",
+    "color": "Зелёная",
+    "image": "images\\IMG_8836-001.jpg"
+  },
+  {
+    "name": "Альпийское молоко",
+    "article": "З14Э1/300+",
+    "price": 80.0,
+    "fraction": "300+ мм",
+    "color": "Зелёная",
+    "image": "images\\IMG_7520-001.jpg"
+  },
+  {
+    "name": "Бразилия",
+    "article": "Р01Щ3/2-10",
+    "price": 180.0,
+    "fraction": "2-10 мм",
+    "color": "Разноцветная",
+    "image": "images\\IMG_9167-001.jpg"
+  },
+  {
+    "name": "Синай",
+    "article": "Р10Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Разноцветная",
+    "image": "images\\image-26-04-22-04-57-5.JPG"
+  },
+  {
+    "name": "Хургада",
+    "article": "Р06Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Разноцветная",
+    "image": "images\\IMG_9017-001.jpg"
+  },
+  {
+    "name": "Санторини",
+    "article": "Р05Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Разноцветная",
+    "image": "images\\IMG_8949-001.jpg"
+  },
+  {
+    "name": "Ялта",
+    "article": "Р11Щ3/2-10",
+    "price": 190.0,
+    "fraction": "2-10 мм",
+    "color": "Разноцветная",
+    "image": "images\\image-26-04-22-04-57-7.jpg"
+  },
+  {
+    "name": "Венесуэла",
+    "article": "Р08Щ3/1-5",
+    "price": 190.0,
+    "fraction": "до 5 мм",
+    "color": "Разноцветная",
+    "image": "images\\IMG_8957-001.jpg"
+  },
+  {
+    "name": "Босфор",
+    "article": "Р03Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Разноцветная",
+    "image": "images\\IMG_8944-001.jpg"
+  },
+  {
+    "name": "Индонезия",
+    "article": "Р02Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Разноцветная",
+    "image": "images\\IMG_8978-001.jpg"
+  },
+  {
+    "name": "Норвегия",
+    "article": "Г14Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Голубая",
+    "image": "images\\IMG_8994-001.JPG"
+  },
+  {
+    "name": "Арктика",
+    "article": "М02Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Монохром",
+    "image": "images\\IMG_8926-001.jpg"
+  },
+  {
+    "name": "Ямал",
+    "article": "С03Щ3/20-70",
+    "price": 180.0,
+    "fraction": "20-70 мм",
+    "color": "Синяя",
+    "image": "images\\ямал1.jpg"
+  },
+  {
+    "name": "Марокко",
+    "article": "Р04Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Разноцветная",
+    "image": "images\\IMG_9055.jpg"
+  },
+  {
+    "name": "Канада",
+    "article": "З25Щ3/10-50",
+    "price": 180.0,
+    "fraction": "10-50 мм",
+    "color": "Зелёная",
+    "image": "images\\OZON_051163_2.jpg"
+  },
+  {
+    "name": "Прозрачное стекло",
+    "article": "М02Э1/300+",
+    "price": 110.0,
+    "fraction": "300+ мм",
+    "color": "Монохром",
+    "image": "images\\2022_11_17_15_14_IMG_0915-001.JPG"
+  },
+  {
+    "name": "Холодное молоко",
+    "article": "М08Э1/300+",
+    "price": 80.0,
+    "fraction": "300+ мм",
+    "color": "Монохром",
+    "image": "images\\IMG_7509-001.jpg"
+  },
+  {
+    "name": "Лунный камень",
+    "article": "З02Э1/300+",
+    "price": 280.0,
+    "fraction": "глыбы",
+    "color": "Зелёная",
+    "image": "images\\IMG_7529-001.jpg"
+  },
+  {
+    "name": "Снежный шторм",
+    "article": "М07Э1/300+",
+    "price": 80.0,
+    "fraction": "глыбы",
+    "color": "Монохром",
+    "image": "images\\IMG_7564-001.jpg"
+  },
+  {
+    "name": "Тёплое молоко",
+    "article": "М09Э1/300+",
+    "price": 56.0,
+    "fraction": "глыбы",
+    "color": "Монохром",
+    "image": "images\\IMG_7536-001.jpg"
+  }
+]
