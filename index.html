@@ -8,34 +8,32 @@
 </head>
 <body>
   <h1>Калькулятор стекла</h1>
+
   <div id="calculator">
     <label>
       Материал:
       <select id="materialSelect"></select>
     </label>
+
     <label>
       Фракция:
-      <select id="fractionSelect"></select>
+      <select id="fractionSelect" disabled></select>
     </label>
-    <label>
-      Цвет:
-      <select id="colorSelect"></select>
-    </label>
-    <label>
-      Длина (м):
-      <input type="number" id="lengthInput" value="1" min="0.1" step="0.1" />
-    </label>
-    <label>
-      Ширина (м):
-      <input type="number" id="widthInput" value="1" min="0.1" step="0.1" />
-    </label>
-    <label>
-      Толщина (м):
-      <input type="number" id="heightInput" value="1" min="0.01" step="0.01" />
-    </label>
+
+    <!-- цвет показываем read‑only -->
+    <div id="colorInfo"></div>
+
+    <fieldset>
+      <legend>Габариты заполнителя (метры)</legend>
+      <label>Длина:   <input type="number" id="lengthInput"  value="1" min="0.1" step="0.1"></label>
+      <label>Ширина:  <input type="number" id="widthInput"   value="1" min="0.1" step="0.1"></label>
+      <label>Высота:  <input type="number" id="heightInput"  value="1" min="0.01" step="0.01"></label>
+    </fieldset>
+
     <div id="result"></div>
     <img id="preview" alt="Фото" />
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>

@@ -1,89 +1,105 @@
 async function loadProducts() {
-  const response = await fetch('products.json');
-  return response.json();
+  const r = await fetch('products.json');
+  return r.json();
 }
 
-function groupBy(items, key) {
+// группируем по name
+function groupByName(arr) {
   const map = new Map();
-  for (const item of items) {
-    if (!map.has(item[key])) map.set(item[key], []);
-    map.get(item[key]).push(item);
+  for (const p of arr) {
+    if (!map.has(p.name)) map.set(p.name, []);
+    map.get(p.name).push(p);
   }
   return map;
 }
 
-function populateSelect(select, options) {
-  select.innerHTML = '';
-  for (const option of options) {
+// заполняем любой <select>
+function fillSelect(sel, options, firstCaption) {
+  sel.innerHTML = '';
+  if (firstCaption) {
     const opt = document.createElement('option');
-    opt.value = option;
-    opt.textContent = option;
-    select.appendChild(opt);
+    opt.disabled = true;
+    opt.selected = true;
+    opt.textContent = firstCaption;
+    sel.appendChild(opt);
+  }
+  for (const v of options) {
+    const o = document.createElement('option');
+    o.value = v;
+    o.textContent = v;
+    sel.appendChild(o);
   }
 }
 
-function initCalculator(data) {
-  const materialSelect = document.getElementById('materialSelect');
-  const fractionSelect = document.getElementById('fractionSelect');
-  const colorSelect = document.getElementById('colorSelect');
-  const lengthInput = document.getElementById('lengthInput');
-  const widthInput = document.getElementById('widthInput');
-  const heightInput = document.getElementById('heightInput');
-  const resultDiv = document.getElementById('result');
-  const preview = document.getElementById('preview');
+function densityByFrac(frac) {
+  // простая карта плотностей; при необходимости расширяйте
+  const d = {
+    '70-300 мм': 1400,
+    '70-150 мм': 1450,
+    '20-70 мм' : 1500,
+    '10-50 мм' : 1500,
+    '2-10 мм'  : 1600
+  };
+  return d[frac] || 1500;
+}
 
-  const materials = groupBy(data, 'name');
-  populateSelect(materialSelect, Array.from(materials.keys()));
+function initUI(data) {
+  const materialsMap = groupByName(data);
 
-  function updateFractions() {
-    const material = materials.get(materialSelect.value) || [];
-    const fractions = [...new Set(material.map(p => p.fraction))];
-    populateSelect(fractionSelect, fractions);
-    updateColors();
-  }
+  const materialSel = document.getElementById('materialSelect');
+  const fracSel     = document.getElementById('fractionSelect');
+  const colorInfo   = document.getElementById('colorInfo');
+  const lInput      = document.getElementById('lengthInput');
+  const wInput      = document.getElementById('widthInput');
+  const hInput      = document.getElementById('heightInput');
+  const resultDiv   = document.getElementById('result');
+  const previewImg  = document.getElementById('preview');
 
-  function updateColors() {
-    const material = materials.get(materialSelect.value) || [];
-    const colors = material.filter(p => p.fraction === fractionSelect.value)
-                           .map(p => p.color);
-    populateSelect(colorSelect, colors);
+  fillSelect(materialSel, Array.from(materialsMap.keys()), '— выберите —');
+
+  function updateFractionOptions() {
+    const material = materialsMap.get(materialSel.value) || [];
+    const fracs = [...new Set(material.map(p => p.fraction))];
+    fillSelect(fracSel, fracs, '— фракция —');
+    fracSel.disabled = false;
     updateResult();
   }
 
-  function getDensity(frac) {
-    const densities = {
-      '70-300': 1400,
-      '70-150': 1450,
-      '20-70': 1500,
-      '10-50 мм': 1500,
-      '2-10 мм': 1600
-    };
-    return densities[frac] || 1500;
-  }
-
   function updateResult() {
-    const material = materials.get(materialSelect.value) || [];
-    const product = material.find(p => p.fraction === fractionSelect.value && p.color === colorSelect.value);
-    if (product) {
-      const length = parseFloat(lengthInput.value) || 0;
-      const width = parseFloat(widthInput.value) || 0;
-      const height = parseFloat(heightInput.value) || 0;
-      const volume = length * width * height;
-      const weight = volume * getDensity(product.fraction);
-      const cost = weight * product.price;
-      resultDiv.textContent = `Нужно ${weight.toFixed(2)} кг. Цена: ${cost.toFixed(2)} руб.`;
-      preview.src = product.image;
+    const material = materialsMap.get(materialSel.value) || [];
+    const product  = material.find(p => p.fraction === fracSel.value);
+    if (!product) {
+      resultDiv.textContent = '';
+      previewImg.src = '';
+      colorInfo.textContent = '';
+      return;
     }
+
+    // выводим цвет
+    colorInfo.textContent = `Цвет: ${product.color}`;
+
+    const len = parseFloat(lInput.value) || 0;
+    const wid = parseFloat(wInput.value) || 0;
+    const hei = parseFloat(hInput.value) || 0;
+    const vol = len * wid * hei;                              // м³
+    const density = densityByFrac(product.fraction);          // кг/м³
+    const weight = vol * density;                             // кг
+    const cost   = weight * product.price;                    // руб.
+
+    resultDiv.textContent =
+      `Нужно ${weight.toFixed(1)} кг × ${product.price} ₽ = ${cost.toFixed(2)} ₽`;
+
+    previewImg.src = product.image;
+    previewImg.alt = product.name;
   }
 
-  materialSelect.addEventListener('change', updateFractions);
-  fractionSelect.addEventListener('change', updateColors);
-  colorSelect.addEventListener('change', updateResult);
-  lengthInput.addEventListener('input', updateResult);
-  widthInput.addEventListener('input', updateResult);
-  heightInput.addEventListener('input', updateResult);
-
-  updateFractions();
+  materialSel.addEventListener('change', () => {
+    updateFractionOptions();
+  });
+  fracSel.addEventListener('change', updateResult);
+  [lInput, wInput, hInput].forEach(el => el.addEventListener('input', updateResult));
 }
 
-loadProducts().then(initCalculator);
+loadProducts().then(initUI).catch(e => {
+  alert('Не удалось загрузить products.json: ' + e);
+});
