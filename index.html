@@ -1,39 +1,87 @@
 <!doctype html>
 <html lang="ru">
 <head>
+  <!-- Кодировка обязана быть первой строкой в <head>, чтобы кириллица отображалась корректно -->
   <meta charset="UTF-8" />
+
   <title>Калькулятор стекла</title>
+
+  <!-- Шрифт Roboto (опционально). Удалите строку, если CDN блокирует кириллицу -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+
+  <!-- Если файл styles.css лежит рядом с index.html, путь оставьте таким -->
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="header-logo">
+    <a href="/">
+      <img src="img/logo.svg" alt="Гусевское декоративное стекло" />
+      <span>Гусевское<br>декоративное<br>стекло</span>
+    </a>
+  </div>
   <h1>Калькулятор стекла</h1>
 
   <div id="calculator">
+
+    <!-- 1. Выбор категории (Эрклёз, Смальта, …) -->
     <label>
-      Материал:
-      <select id="materialSelect"></select>
+      Категория:
+      <select id="categorySelect"></select>
     </label>
 
+    <!-- 2. Выбор материала (название стекла) -->
+    <label>
+      Материал:
+      <select id="materialSelect" disabled></select>
+    </label>
+
+    <!-- 3. Выбор фракции -->
     <label>
       Фракция:
       <select id="fractionSelect" disabled></select>
     </label>
 
-    <!-- цвет показываем read‑only -->
+    <!-- Цвет выводится как текст, менять его не нужно -->
     <div id="colorInfo"></div>
 
+    <!-- Геометрия заполнителя -->
     <fieldset>
       <legend>Габариты заполнителя (метры)</legend>
-      <label>Длина:   <input type="number" id="lengthInput"  value="1" min="0.1" step="0.1"></label>
-      <label>Ширина:  <input type="number" id="widthInput"   value="1" min="0.1" step="0.1"></label>
-      <label>Высота:  <input type="number" id="heightInput"  value="1" min="0.01" step="0.01"></label>
+
+      <label>
+        Длина:
+        <input type="number"
+               id="lengthInput"
+               value="1"
+               min="0.1"
+               step="0.1" />
+      </label>
+
+      <label>
+        Ширина:
+        <input type="number"
+               id="widthInput"
+               value="1"
+               min="0.1"
+               step="0.1" />
+      </label>
+
+      <label>
+        Высота:
+        <input type="number"
+               id="heightInput"
+               value="1"
+               min="0.01"
+               step="0.01" />
+      </label>
     </fieldset>
 
+    <!-- Итог + фото -->
     <div id="result"></div>
-    <img id="preview" alt="Фото" />
+    <img id="preview" alt="Фото товара" />
   </div>
 
+  <!-- Скрипт калькулятора -->
   <script src="script.js"></script>
 </body>
 </html>

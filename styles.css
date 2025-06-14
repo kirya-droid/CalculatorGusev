@@ -1,54 +1,114 @@
+/* ---------- базовые параметры страницы ---------- */
+
 body {
-  font-family: 'Roboto', Arial, sans-serif;
-  background: #f2f4f8;
-  color: #333;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+  font-family: "Roboto", Arial, sans-serif;
+  background: #e9ecf2;
   margin: 0;
-  padding: 2em;
+  padding: 2rem 0;
+
+  /* ключевые две строки ↓↓↓ */
+  display: flex;
+  flex-direction: column;   /* размещаем элементы вертикально */
+  align-items: center;      /* центрируем каждую «строку» по горизонтали */
 }
+
 
 h1 {
   text-align: center;
-  margin-bottom: 1em;
+  margin-bottom: 1.5rem;
 }
+
+/* ───── логотип-шапка ──────────────────────────────────────────────── */
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;                 /* расстояние между картинкой и текстом */
+  margin-bottom: 1rem;         /* отступ от логотипа до заголовка */
+}
+
+.header-logo a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #111;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.1;
+}
+
+/* картинка логотипа */
+.header-logo img {
+  width: 48px;                 /* подберите под вашу картинку */
+  height: auto;
+}
+
+/* ---------- карточка-контейнер ---------- */
 
 #calculator {
   background: #fff;
-  padding: 2em;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  padding: 1.5rem 2rem;
+  max-width: 420px;
   width: 100%;
 }
 
+/* ---------- элементы формы ---------- */
+
 #calculator label {
-  display: flex;
-  flex-direction: column;
-  font-size: 0.9em;
-  margin-bottom: 1em;
+  display: block;
+  margin-top: 0.75rem;
+  font-size: 0.95rem;
 }
 
-#calculator input,
-#calculator select {
-  margin-top: 0.3em;
-  padding: 0.5em;
-  font-size: 1em;
-  border: 1px solid #ccc;
+#calculator select,
+#calculator input {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #c7cdd4;
   border-radius: 4px;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+/* ---------- fieldset для размеров ---------- */
+
+#calculator fieldset {
+  margin: 1.25rem 0 0.75rem;        /* ↑ увеличили верхний отступ */
+  border: 1px solid #cdd2db;
+  border-radius: 4px;
+}
+
+#calculator fieldset legend {
+  padding: 0 0.4rem;
+  font-size: 0.9rem;
+  color: #4a5568;
+}
+
+#calculator fieldset label {
+  margin-top: 0.5rem;               /* интервал между полями */
+}
+
+/* ---------- вывод информации ---------- */
+
+#colorInfo {
+  margin: 0.5rem 0 1.25rem;         /* ↓ увеличили нижний отступ */
+  font-weight: 500;
 }
 
 #result {
-  margin-top: 1em;
-  font-weight: bold;
+  margin: 0.75rem 0 1rem;
+  font-weight: 600;
 }
 
+/* ---------- картинка-превью ---------- */
+
 #preview {
-  margin-top: 1em;
-  max-width: 100%;
-  border-radius: 4px;
   display: block;
+  width: 100%;
+  max-height: 350px;
+  object-fit: contain;
+  border-radius: 4px;
+  border: 1px solid #d0d6df;
 }
