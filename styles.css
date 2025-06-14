@@ -1,55 +1,82 @@
+/* -----------------------------------------------------------------
+   Minimal-Business Theme  ·  Gusev Glass Calculator
+   -----------------------------------------------------------------
+   Цветовая палитра (серый + фирменный синий из логотипа):
+   •   #005f9e  – акцент (кнопки, ссылки)
+   •   #1c1e21 – базовый текст
+   •   #4d5560 – вторичный текст
+   •   #e8ecf2 – фон страницы
+   •   #f7f9fc – фон карточки, hover полей
+------------------------------------------------------------------ */
+
 /* ---------- базовые параметры страницы ---------- */
+
+:root {
+  --accent:   #005f9e;
+  --bg-page:  #e8ecf2;
+  --bg-card:  #f7f9fc;
+  --text:     #1c1e21;
+  --text2:    #4d5560;
+  --border:   #d0d6df;
+  --radius:   8px;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
 
 body {
   font-family: "Roboto", Arial, sans-serif;
-  background: #e9ecf2;
+  color: var(--text);
+  background: var(--bg-page);
   margin: 0;
-  padding: 2rem 0;
+  padding: 2.5rem 1rem;
 
-  /* ключевые две строки ↓↓↓ */
   display: flex;
-  flex-direction: column;   /* размещаем элементы вертикально */
-  align-items: center;      /* центрируем каждую «строку» по горизонтали */
+  flex-direction: column;
+  align-items: center;
 }
-
 
 h1 {
+  font-size: 1.75rem;
+  margin: 0 0 2rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
   text-align: center;
-  margin-bottom: 1.5rem;
 }
 
-/* ───── логотип-шапка ──────────────────────────────────────────────── */
+/* ---------- логотип ---------- */
+
 .header-logo {
   display: flex;
   align-items: center;
-  gap: 0.6rem;                 /* расстояние между картинкой и текстом */
-  margin-bottom: 1rem;         /* отступ от логотипа до заголовка */
+  gap: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .header-logo a {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: #111;
+  color: var(--text);
   font-weight: 600;
-  font-size: 1rem;
-  line-height: 1.1;
+  font-size: 1.05rem;
+  line-height: 1.15;
 }
 
-/* картинка логотипа */
 .header-logo img {
-  width: 48px;                 /* подберите под вашу картинку */
+  width: 56px;
   height: auto;
 }
 
 /* ---------- карточка-контейнер ---------- */
 
 #calculator {
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-  padding: 1.5rem 2rem;
-  max-width: 420px;
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  padding: 2rem 2.25rem;
+  max-width: 440px;
   width: 100%;
 }
 
@@ -57,49 +84,62 @@ h1 {
 
 #calculator label {
   display: block;
-  margin-top: 0.75rem;
+  margin-top: 1rem;
   font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text2);
 }
 
 #calculator select,
 #calculator input {
   width: 100%;
-  padding: 0.35rem 0.5rem;
-  margin-top: 0.25rem;
-  border: 1px solid #c7cdd4;
+  padding: 0.55rem 0.65rem;
+  margin-top: 0.4rem;
+  border: 1px solid var(--border);
   border-radius: 4px;
-  font-size: 0.95rem;
-  box-sizing: border-box;
+  font-size: 0.96rem;
+  background: #fff;
+  transition: border-color .2s, background .2s;
+}
+
+#calculator select:focus,
+#calculator input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
 }
 
 /* ---------- fieldset для размеров ---------- */
 
 #calculator fieldset {
-  margin: 1.25rem 0 0.75rem;        /* ↑ увеличили верхний отступ */
-  border: 1px solid #cdd2db;
+  margin: 1.5rem 0 1.25rem;
+  border: 1px solid var(--border);
   border-radius: 4px;
+  padding: 0.5rem 0.75rem 0.75rem;
 }
 
 #calculator fieldset legend {
-  padding: 0 0.4rem;
+  padding: 0 0.5rem;
   font-size: 0.9rem;
-  color: #4a5568;
+  color: var(--text2);
 }
 
 #calculator fieldset label {
-  margin-top: 0.5rem;               /* интервал между полями */
+  margin-top: 0.75rem;
 }
 
 /* ---------- вывод информации ---------- */
 
 #colorInfo {
-  margin: 0.5rem 0 1.25rem;         /* ↓ увеличили нижний отступ */
+  margin: 0.5rem 0 1.4rem;
   font-weight: 500;
+  color: var(--accent);
 }
 
 #result {
-  margin: 0.75rem 0 1rem;
+  margin: 1rem 0 1.2rem;
   font-weight: 600;
+  font-size: 1.05rem;
 }
 
 /* ---------- картинка-превью ---------- */
@@ -107,8 +147,18 @@ h1 {
 #preview {
   display: block;
   width: 100%;
-  max-height: 350px;
+  max-height: 340px;
   object-fit: contain;
   border-radius: 4px;
-  border: 1px solid #d0d6df;
+  border: 1px solid var(--border);
 }
+
+/* ---------- интерактивные мелочи ---------- */
+
+select:disabled,
+input:disabled {
+  background: #f1f3f6;
+  color: #9da4af;
+}
+
+option[disabled] { color: #9da4af; }
