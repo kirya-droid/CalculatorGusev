@@ -46,11 +46,10 @@ h1 {
 }
 
 /* ---------- логотип ---------- */
-
 .header-logo {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem; /* увеличили расстояние между логотипом и текстом */
   margin-bottom: 1.25rem;
 }
 
@@ -68,6 +67,12 @@ h1 {
   width: 56px;
   height: auto;
 }
+
+/* Увеличиваем отступ между картинкой и текстом */
+.header-logo span {
+  margin-left: 1rem; /* увеличиваем расстояние */
+}
+
 
 /* ---------- карточка-контейнер ---------- */
 
@@ -162,3 +167,34 @@ input:disabled {
 }
 
 option[disabled] { color: #9da4af; }
+
+/* ---------- Мобильная адаптация ---------- */
+
+@media (max-width: 768px) {
+  body {
+    padding: 1.5rem 0;
+  }
+
+  h1 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .header-logo {
+    gap: 1rem;
+  }
+
+  #calculator {
+    padding: 1.5rem 1.5rem;
+  }
+
+  #calculator label,
+  #calculator select,
+  #calculator input {
+    font-size: 0.9rem;
+  }
+
+  #preview {
+    max-height: 250px;
+  }
+}

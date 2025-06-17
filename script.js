@@ -77,7 +77,7 @@ async function main() {
   /* выбор категории */
   catSel.addEventListener('change', () => {
     const mats = [...tree.get(catSel.value).keys()];
-    fillSelect(matSel, mats, '— материал —');
+    fillSelect(matSel, mats, '— Цвет —');
     matSel.disabled = false;
     fracSel.disabled = true;
     fracSel.innerHTML = '';
