@@ -198,3 +198,50 @@ option[disabled] { color: #9da4af; }
     max-height: 250px;
   }
 }
+/* ---------- кнопка WhatsApp ---------- */
+.whatsapp-btn {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 20px;
+  background: #25d366;           /* фирменный зелёный */
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 999px;          /* полностью круглая форма */
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+
+  text-decoration: none;
+  user-select: none;
+  cursor: pointer;
+
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.55);
+}
+
+.whatsapp-btn svg {
+  flex: none;                    /* иконка не растягивается */
+  width: 24px;
+  height: 24px;
+  fill: currentColor;            /* наследует белый цвет */
+}
+
+/* На очень узких экранах оставляем только иконку */
+@media (max-width: 480px) {
+  .whatsapp-btn span {
+    display: none;
+  }
+  .whatsapp-btn {
+    padding: 12px;
+  }
+}
