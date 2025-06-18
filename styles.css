@@ -245,3 +245,56 @@ option[disabled] { color: #9da4af; }
     padding: 12px;
   }
 }
+
+/* ---------- компактный мобайл (≤ 480 px) ---------- */
+@media (max-width: 480px) {
+  /* убираем боковые поля у body */
+  body {
+    padding: 1rem 0;
+  }
+
+  /* карточка растягивается на всю ширину, скругление поменьше */
+  #calculator {
+    max-width: none;
+    border-radius: 0;
+    padding: 1.25rem 1rem;
+  }
+
+  /* поля формы ещё компактнее */
+  #calculator label,
+  #calculator select,
+  #calculator input {
+    font-size: 0.88rem;
+  }
+
+  /* картинка – чуть ниже, выше список */
+  #preview {
+    max-height: 220px;
+  }
+
+  /* логотип – сниженный gap и уменьшенный шрифт */
+  .header-logo {
+    gap: 0.75rem;
+  }
+  .header-logo span {
+    font-size: 0.85rem;
+    line-height: 1.2;
+  }
+
+  /* WhatsApp-кнопка — круглая, крупная иконка, без текста */
+  .whatsapp-btn {
+    padding: 0;               /* убираем внутренние отступы */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    justify-content: center;  /* иконка по центру */
+  }
+  .whatsapp-btn svg {
+    width: 30px;
+    height: 30px;
+  }
+  .whatsapp-btn span {        /* скрываем подпись */
+    display: none;
+  }
+}
+
