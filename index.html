@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <meta charset="UTF-8" />
   <title>Калькулятор стекла — Гусевское декоративное стекло</title>
 
@@ -84,6 +83,27 @@
     <div id="result"></div>
     <img id="preview" alt="Фото товара" />
   </div>
+
+  <!-- Форма Битрикс -->
+  <form method="POST" action="https://b24-XXXXXX.bitrix24.ru/crm/form/submit/16/" id="bitrix-form">
+    <input  name="NAME" id="fioField" />
+    <input  name="PHONE" id="phoneField" />
+    <input name="EMAIL" id="emailField" />
+    <input type="hidden" name="COMMENTS" id="commentField" />
+    <button type="button" id="submitBtn">Отправить заявку</button>
+  </form>
+
+  <!-- Скрипт загрузки виджета Битрикс -->
+  <script data-b24-form="inline/16/n2i46f" data-skip-moving="true">
+    (function(w,d,u){
+        var s=d.createElement('script');
+        s.async=true;
+        s.src=u+'?'+(Date.now()/180000|0);
+        var h=d.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s,h);
+    })(window,document,'https://cdn-ru.bitrix24.ru/b27398648/crm/form/loader_16.js');
+  </script>
+
   <!-- Кнопка WhatsApp -->
   <a class="whatsapp-btn"
      href="https://wa.me/79209117591"
@@ -97,8 +117,37 @@
     <span>Написать в WhatsApp</span>
   </a>
 
-
   <!-- Скрипт калькулятора -->
   <script src="script.js"></script>
+
+  <script>
+    // Функция отправки лида в Битрикс
+    async function sendLeadToBitrix() {
+        const fio = "Иван Иванов";  // Пример, получаем из формы
+        const phone = "+79001234567";  // Пример номера телефона
+        const email = "ivan@example.com";  // Пример email (если есть)
+        const cost = "1500";  // Пример суммы расчёта
+
+        // Заполнение скрытых полей формы
+        document.getElementById("fioField").value = fio;
+        document.getElementById("phoneField").value = phone;
+        document.getElementById("emailField").value = email;
+        document.getElementById("commentField").value = `Расчет стоимости: ${cost} руб.`; // комментарий с расчетом
+
+        // Отправка формы в Битрикс
+        document.getElementById("bitrix-form").submit();
+    }
+
+    // Пример вызова, например, после расчёта
+    document.getElementById("submitBtn").addEventListener("click", function() {
+        // Проверяем, если все поля заполнены
+        if (document.getElementById("fioField").value && document.getElementById("phoneField").value) {
+            sendLeadToBitrix();  // Отправляем данные
+        } else {
+            alert("Пожалуйста, заполните все обязательные поля.");
+        }
+    });
+  </script>
+
 </body>
 </html>
