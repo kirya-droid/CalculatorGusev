@@ -1,16 +1,8 @@
 /* -----------------------------------------------------------------
-   Minimal-Business Theme  ·  Gusev Glass Calculator
-   -----------------------------------------------------------------
-   Цветовая палитра (серый + фирменный синий из логотипа):
-   •   #005f9e  – акцент (кнопки, ссылки)
-   •   #1c1e21 – базовый текст
-   •   #4d5560 – вторичный текст
-   •   #e8ecf2 – фон страницы
-   •   #f7f9fc – фон карточки, hover полей
+   Minimal-Business Theme · Gusev Glass Calculator
 ------------------------------------------------------------------ */
 
-/* ---------- базовые параметры страницы ---------- */
-
+/* ---------- базовые переменные ---------- */
 :root {
   --accent:   #005f9e;
   --bg-page:  #e8ecf2;
@@ -21,9 +13,7 @@
   --radius:   8px;
 }
 
-*,
-*::before,
-*::after { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   font-family: "Roboto", Arial, sans-serif;
@@ -37,19 +27,11 @@ body {
   align-items: center;
 }
 
-h1 {
-  font-size: 1.75rem;
-  margin: 0 0 2rem;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  text-align: center;
-}
-
 /* ---------- логотип ---------- */
 .header-logo {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* увеличили расстояние между логотипом и текстом */
+  gap: 1.5rem;
   margin-bottom: 1.25rem;
 }
 
@@ -68,29 +50,28 @@ h1 {
   height: auto;
 }
 
-/* Увеличиваем отступ между картинкой и текстом */
-.header-logo span {
-  margin-left: 1rem; /* увеличиваем расстояние */
+h1 {
+  font-size: 1.75rem;
+  margin: 0 0 2rem;
+  font-weight: 600;
+  letter-spacing: .3px;
+  text-align: center;
 }
 
-
-/* ---------- карточка-контейнер ---------- */
-
+/* ---------- карточка-калькулятор ---------- */
 #calculator {
   background: var(--bg-card);
   border-radius: var(--radius);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
   padding: 2rem 2.25rem;
   max-width: 440px;
   width: 100%;
 }
 
-/* ---------- элементы формы ---------- */
-
 #calculator label {
   display: block;
   margin-top: 1rem;
-  font-size: 0.95rem;
+  font-size: .95rem;
   font-weight: 500;
   color: var(--text2);
 }
@@ -98,11 +79,11 @@ h1 {
 #calculator select,
 #calculator input {
   width: 100%;
-  padding: 0.55rem 0.65rem;
-  margin-top: 0.4rem;
+  padding: .55rem .65rem;
+  margin-top: .4rem;
   border: 1px solid var(--border);
   border-radius: 4px;
-  font-size: 0.96rem;
+  font-size: .96rem;
   background: #fff;
   transition: border-color .2s, background .2s;
 }
@@ -111,32 +92,27 @@ h1 {
 #calculator input:focus {
   outline: none;
   border-color: var(--accent);
-  background: #fff;
 }
 
-/* ---------- fieldset для размеров ---------- */
-
+/* fieldset размеров */
 #calculator fieldset {
   margin: 1.5rem 0 1.25rem;
   border: 1px solid var(--border);
   border-radius: 4px;
-  padding: 0.5rem 0.75rem 0.75rem;
+  padding: .5rem .75rem .75rem;
 }
 
 #calculator fieldset legend {
-  padding: 0 0.5rem;
-  font-size: 0.9rem;
+  padding: 0 .5rem;
+  font-size: .9rem;
   color: var(--text2);
 }
 
-#calculator fieldset label {
-  margin-top: 0.75rem;
-}
+#calculator fieldset label { margin-top: .75rem; }
 
-/* ---------- вывод информации ---------- */
-
+/* вывод результата */
 #colorInfo {
-  margin: 0.5rem 0 1.4rem;
+  margin: .5rem 0 1.4rem;
   font-weight: 500;
   color: var(--accent);
 }
@@ -147,8 +123,6 @@ h1 {
   font-size: 1.05rem;
 }
 
-/* ---------- картинка-превью ---------- */
-
 #preview {
   display: block;
   width: 100%;
@@ -158,46 +132,40 @@ h1 {
   border: 1px solid var(--border);
 }
 
-/* ---------- интерактивные мелочи ---------- */
-
-select:disabled,
-input:disabled {
-  background: #f1f3f6;
-  color: #9da4af;
+/* ---------- форма Битрикс ---------- */
+#bitrix-form {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  padding: 1.5rem 2.25rem;
+  max-width: 440px;
+  width: 100%;
+  margin-top: 1.5rem;
 }
 
-option[disabled] { color: #9da4af; }
-
-/* ---------- Мобильная адаптация ---------- */
-
-@media (max-width: 768px) {
-  body {
-    padding: 1.5rem 0;
-  }
-
-  h1 {
-    font-size: 1.4rem;
-    margin-bottom: 1rem;
-  }
-
-  .header-logo {
-    gap: 1rem;
-  }
-
-  #calculator {
-    padding: 1.5rem 1.5rem;
-  }
-
-  #calculator label,
-  #calculator select,
-  #calculator input {
-    font-size: 0.9rem;
-  }
-
-  #preview {
-    max-height: 250px;
-  }
+#bitrix-form input,
+#bitrix-form button {
+  width: 100%;
+  padding: .55rem .65rem;
+  margin-top: .75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: .96rem;
+  transition: border-color .2s;
 }
+
+#bitrix-form input { background: #fff; }
+#bitrix-form input:focus { outline: none; border-color: var(--accent); }
+
+#bitrix-form button {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+#bitrix-form button:hover { opacity: .9; }
+
 /* ---------- кнопка WhatsApp ---------- */
 .whatsapp-btn {
   position: fixed;
@@ -210,91 +178,123 @@ option[disabled] { color: #9da4af; }
   gap: 10px;
 
   padding: 12px 20px;
-  background: #25d366;           /* фирменный зелёный */
+  background: #25d366;
   color: #fff;
   font-weight: 600;
   font-size: 1rem;
-  border-radius: 999px;          /* полностью круглая форма */
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-
+  border-radius: 999px;
+  box-shadow: 0 4px 12px rgba(37,211,102,.4);
   text-decoration: none;
   user-select: none;
   cursor: pointer;
-
-  transition: transform .15s ease, box-shadow .15s ease;
+  transition: transform .15s, box-shadow .15s;
 }
-
 .whatsapp-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(37, 211, 102, 0.55);
+  box-shadow: 0 6px 16px rgba(37,211,102,.55);
 }
-
 .whatsapp-btn svg {
-  flex: none;                    /* иконка не растягивается */
-  width: 24px;
-  height: 24px;
-  fill: currentColor;            /* наследует белый цвет */
+  width: 24px; height: 24px; flex: none; fill: currentColor;
 }
 
-/* На очень узких экранах оставляем только иконку */
-@media (max-width: 480px) {
-  .whatsapp-btn span {
-    display: none;
-  }
-  .whatsapp-btn {
-    padding: 12px;
-  }
+/* ---------- десктоп->мобайл адаптация ---------- */
+@media (max-width: 768px) {
+  body { padding: 1.5rem 0; }
+  h1   { font-size: 1.4rem; margin-bottom: 1rem; }
+  .header-logo { gap: 1rem; }
+
+  #calculator, #bitrix-form { padding: 1.5rem 1.5rem; }
+  #calculator label, #calculator select, #calculator input,
+  #bitrix-form input, #bitrix-form button { font-size: .9rem; }
+  #preview { max-height: 250px; }
 }
 
-/* ---------- компактный мобайл (≤ 480 px) ---------- */
 @media (max-width: 480px) {
-  /* убираем боковые поля у body */
-  body {
-    padding: 1rem 0;
-  }
+  body { padding: 1rem 0; }
 
-  /* карточка растягивается на всю ширину, скругление поменьше */
-  #calculator {
-    max-width: none;
-    border-radius: 0;
+  #calculator, #bitrix-form {
+    max-width: none; border-radius: 0;
     padding: 1.25rem 1rem;
   }
 
-  /* поля формы ещё компактнее */
-  #calculator label,
-  #calculator select,
-  #calculator input {
-    font-size: 0.88rem;
-  }
+  #calculator label, #calculator select, #calculator input,
+  #bitrix-form input, #bitrix-form button { font-size: .88rem; }
 
-  /* картинка – чуть ниже, выше список */
-  #preview {
-    max-height: 220px;
-  }
+  #preview { max-height: 220px; }
 
-  /* логотип – сниженный gap и уменьшенный шрифт */
-  .header-logo {
-    gap: 0.75rem;
-  }
-  .header-logo span {
-    font-size: 0.85rem;
-    line-height: 1.2;
-  }
+  .header-logo { gap: .75rem; }
+  .header-logo span { font-size: .85rem; line-height: 1.2; }
 
-  /* WhatsApp-кнопка — круглая, крупная иконка, без текста */
   .whatsapp-btn {
-    padding: 0;               /* убираем внутренние отступы */
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    justify-content: center;  /* иконка по центру */
+    padding: 0;
+    width: 60px; height: 60px; border-radius: 50%;
+    justify-content: center;
   }
-  .whatsapp-btn svg {
-    width: 30px;
-    height: 30px;
-  }
-  .whatsapp-btn span {        /* скрываем подпись */
-    display: none;
-  }
+  .whatsapp-btn svg { width: 30px; height: 30px; }
 }
 
+/* ---------- общие отключения ---------- */
+select:disabled, input:disabled {
+  background: #f1f3f6; color: #9da4af;
+}
+option[disabled] { color: #9da4af; }
+
+
+/* --- скрываем авто-виджет Bitrix24, оставляем только кастомную форму --- */
+.b24-form-wrapper,                   /* основная обёртка */
+.b24-form                             /* сама форма */
+/*{ display:none !important; }
+
+/* ---------- моя (видимая) форма ---------- */
+#my-form{
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
+  padding: 1.5rem 2.25rem;
+  max-width: 440px;
+  width: 100%;
+  margin-top: 1.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+}
+
+#my-form input,
+#my-form button{
+  width: 100%;
+  padding: .55rem .65rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-size: .96rem;
+  transition: border-color .2s;
+}
+
+#my-form input{
+  background:#fff;
+}
+#my-form input:focus{
+  outline:none;
+  border-color:var(--accent);
+}
+#my-form button{
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+}
+#my-form button:hover{opacity:.9}
+
+/* мобайл-кастомизация (≤480 px) */
+@media(max-width:480px){
+  #my-form{
+    max-width:none;
+    border-radius:0;
+    padding:1.25rem 1rem;
+  }
+  #my-form input,
+  #my-form button{
+    font-size:.88rem;
+  }
+}

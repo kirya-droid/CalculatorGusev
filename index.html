@@ -1,153 +1,64 @@
 <!doctype html>
 <html lang="ru">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta charset="UTF-8" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Калькулятор стекла — Гусевское декоративное стекло</title>
 
-  <!-- ① фавикон (SVG или PNG 32×32) -->
-  <link rel="icon" type="image/svg+xml" href="img/logo.svg" />
-  <!-- fallback-PNG для старых браузеров -->
-  <link rel="alternate icon" type="image/png" href="img/logo-32.png" />
-
-  <!-- ваши стили, шрифты… -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <!-- фавиконки + шрифт -->
+  <link rel="icon" type="image/svg+xml" href="img/logo.svg">
+  <link rel="alternate icon" type="image/png" href="img/logo-32.png">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+  <!-- логотип -->
   <div class="header-logo">
     <a href="/">
-      <img src="img/logo.svg" alt="Гусевское декоративное стекло" />
+      <img src="img/logo.svg" alt="">
       <span>Гусевское<br>декоративное<br>стекло</span>
     </a>
   </div>
   <h1>Калькулятор стекла</h1>
 
+  <!-- карточка-калькулятор -->
   <div id="calculator">
+    <label>Категория: <select id="categorySelect"></select></label>
+    <label>Цвет:      <select id="materialSelect"  disabled></select></label>
+    <label>Фракция:   <select id="fractionSelect" disabled></select></label>
 
-    <!-- 1. Выбор категории (Эрклёз, Смальта, …) -->
-    <label>
-      Категория:
-      <select id="categorySelect"></select>
-    </label>
-
-    <!-- 2. Выбор материала (название стекла) -->
-    <label>
-      Цвет:
-      <select id="materialSelect" disabled></select>
-    </label>
-
-    <!-- 3. Выбор фракции -->
-    <label>
-      Фракция:
-      <select id="fractionSelect" disabled></select>
-    </label>
-
-    <!-- Цвет выводится как текст, менять его не нужно -->
     <div id="colorInfo"></div>
 
-    <!-- Геометрия заполнителя -->
     <fieldset>
       <legend>Габариты заполнителя (метры)</legend>
-
-      <label>
-        Длина:
-        <input type="number"
-               id="lengthInput"
-               value="1"
-               min="0.1"
-               step="0.1" />
-      </label>
-
-      <label>
-        Ширина:
-        <input type="number"
-               id="widthInput"
-               value="1"
-               min="0.1"
-               step="0.1" />
-      </label>
-
-      <label>
-        Высота:
-        <input type="number"
-               id="heightInput"
-               value="1"
-               min="0.01"
-               step="0.01" />
-      </label>
+      <label>Длина:  <input type="number" id="lengthInput"  value="1" min="0.1" step="0.1"></label>
+      <label>Ширина: <input type="number" id="widthInput"   value="1" min="0.1" step="0.1"></label>
+      <label>Высота: <input type="number" id="heightInput"  value="1" min="0.01" step="0.01"></label>
     </fieldset>
 
-    <!-- Итог + фото -->
     <div id="result"></div>
-    <img id="preview" alt="Фото товара" />
+    <img id="preview" alt="Фото товара">
   </div>
 
-  <!-- Форма Битрикс -->
-  <form method="POST" action="https://b24-XXXXXX.bitrix24.ru/crm/form/submit/16/" id="bitrix-form">
-    <input  name="NAME" id="fioField" />
-    <input  name="PHONE" id="phoneField" />
-    <input name="EMAIL" id="emailField" />
-    <input type="hidden" name="COMMENTS" id="commentField" />
-    <button type="button" id="submitBtn">Отправить заявку</button>
+  <!-- мини-форма (видимая) -->
+  <form id="ui-form" autocomplete="off">
+    <input id="fioInp"  placeholder="ФИО*"      required>
+    <input id="telInp"  placeholder="Телефон*"  required>
+    <input id="mailInp" placeholder="Email (необязательно)" type="email">
+    <button type="submit">Отправить расчёт</button>
   </form>
 
-  <!-- Скрипт загрузки виджета Битрикс -->
-  <script data-b24-form="inline/16/n2i46f" data-skip-moving="true">
-    (function(w,d,u){
-        var s=d.createElement('script');
-        s.async=true;
-        s.src=u+'?'+(Date.now()/180000|0);
-        var h=d.getElementsByTagName('script')[0];
-        h.parentNode.insertBefore(s,h);
-    })(window,document,'https://cdn-ru.bitrix24.ru/b27398648/crm/form/loader_16.js');
-  </script>
+  <!-- встроенный loader Bitrix24  (СКРЫВАТЬ НЕ НУЖНО - он рисует «родную» форму в DOM) -->
+  <script data-b24-form="inline/16/n2i46f" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.ru/b27398648/crm/form/loader_16.js');</script>
 
-  <!-- Кнопка WhatsApp -->
-  <a class="whatsapp-btn"
-     href="https://wa.me/79209117591"
-     target="_blank"
-     aria-label="Написать в WhatsApp">
-    <!-- SVG-иконка -->
-    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
-      <path fill="currentColor"
-            d="M12.04 2.3A9.7 9.7 0 002.33 12c0 1.71.44 3.37 1.29 4.84L2 22l5.3-1.37A9.66 9.66 0 0012.04 21a9.7 9.7 0 100-19.4zm5.64 14.14c-.24.67-1.41 1.3-1.98 1.38-.51.08-1.15.12-1.86-.12-.43-.15-.97-.31-1.67-.61-2.94-1.28-4.86-4.21-5-4.4-.14-.19-1.2-1.59-1.2-3.04 0-1.44.76-2.15 1.03-2.45.27-.31.6-.38.8-.38.19 0 .39.01.56.01.19 0 .42-.06.65.5.24.58.83 1.99.9 2.13.07.15.12.32.02.51-.09.19-.14.3-.28.46-.13.15-.3.34-.43.45-.15.12-.3.26-.13.51.18.25.79 1.3 1.7 2.1 1.17 1.05 2.15 1.37 2.4 1.52.25.14.4.12.55-.07.14-.19.63-.75.8-1.01.17-.26.34-.21.56-.12.23.08 1.45.69 1.7.82.25.12.42.19.48.3.06.12.06.69-.18 1.36z"/>
-    </svg>
+  <!-- WhatsApp-кнопка (опционально) -->
+  <a class="whatsapp-btn" href="https://wa.me/79209117591" target="_blank" aria-label="WhatsApp">
+    <!-- SVG-иконка опущена для краткости -->
     <span>Написать в WhatsApp</span>
   </a>
 
-  <!-- Скрипт калькулятора -->
+  <!-- логика -->
   <script src="script.js"></script>
-
-  <script>
-    // Функция отправки лида в Битрикс
-    async function sendLeadToBitrix() {
-        const fio = "Иван Иванов";  // Пример, получаем из формы
-        const phone = "+79001234567";  // Пример номера телефона
-        const email = "ivan@example.com";  // Пример email (если есть)
-        const cost = "1500";  // Пример суммы расчёта
-
-        // Заполнение скрытых полей формы
-        document.getElementById("fioField").value = fio;
-        document.getElementById("phoneField").value = phone;
-        document.getElementById("emailField").value = email;
-        document.getElementById("commentField").value = `Расчет стоимости: ${cost} руб.`; // комментарий с расчетом
-
-        // Отправка формы в Битрикс
-        document.getElementById("bitrix-form").submit();
-    }
-
-    // Пример вызова, например, после расчёта
-    document.getElementById("submitBtn").addEventListener("click", function() {
-        // Проверяем, если все поля заполнены
-        if (document.getElementById("fioField").value && document.getElementById("phoneField").value) {
-            sendLeadToBitrix();  // Отправляем данные
-        } else {
-            alert("Пожалуйста, заполните все обязательные поля.");
-        }
-    });
-  </script>
-
 </body>
 </html>

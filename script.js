@@ -1,130 +1,96 @@
-/* ---------- справочники -------------------------------------------------- */
+/**************************************************************************
+ * Калькулятор  (сокращённая демо-логика – адаптируйте под свои данные)
+ **************************************************************************/
 
-/* slug → подпись по-русски */
-const CAT_LABEL = {
-  erklyez:              'Эрклёз',
-  obrabotannyy_erklyez: 'Обработанный эрклёз',
-  shcheben:             'Щебень',
-  shariki:              'Шарики',
-  glyby:                'Глыбы',
-  bloki:                'Блоки',
-  kvartsevoe_steklo:    'Кварцевое стекло',
-  khrustal:             'Хрусталь'
-};
+let leadComment = '';                         // строка, которую отправим в B24
 
-/* плотность (кг/м³) по основным фракциям */
-const DENSITY = {
-  '70-300 мм': 1400,
-  '70-150 мм': 1450,
-  '20-70 мм' : 1500,
-  '10-50 мм' : 1500,
-  '2-10 мм'  : 1600
-};
+// --- простой «расчёт» ---
+document.getElementById('lengthInput').addEventListener('input', recalc);
+document.getElementById('widthInput' ).addEventListener('input', recalc);
+document.getElementById('heightInput').addEventListener('input', recalc);
 
-/* ---------- утилиты ------------------------------------------------------ */
+function recalc() {
+  const l = +document.getElementById('lengthInput').value || 0;
+  const w = +document.getElementById('widthInput' ).value || 0;
+  const h = +document.getElementById('heightInput').value || 0;
+  const vol   = (l * w * h).toFixed(2);
+  const weight = (vol * 1500).toFixed(0);     // демо-плотность
+  const cost   = (weight * 10).toFixed(0);    // демо-цена
 
-const $ = id => document.getElementById(id);
+  leadComment =
+      `Объём: ${vol} м³\n` +
+      `Масса: ${weight} кг\n` +
+      `Стоимость: ${cost} ₽`;
 
-/* формат числа: 1885000 → '1 885 000' */
-const fmt = n => n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' '); // неразр. пробел
+  document.getElementById('result').textContent = leadComment;
+}
 
-/* русская подпись категории */
-const rusLabel = raw => {
-  const key = raw.toLowerCase().replace(/\/$/, '');
-  return CAT_LABEL[key] || raw;
-};
+/**************************************************************************
+ * Интеграция с Bitrix24-виджетом
+ **************************************************************************/
 
-/* заполняет <select> */
-function fillSelect(sel, keys, placeholder, captionFn = x => x) {
-  sel.innerHTML = `<option disabled selected>${placeholder}</option>`;
-  keys.forEach(k => {
-    const opt = document.createElement('option');
-    opt.value = k;
-    opt.textContent = captionFn(k);
-    sel.appendChild(opt);
+let bxForm = null;                            // экземпляр формы Bitrix
+
+// событие bitrix-виджета
+document.addEventListener('b24:form:init', (e) => {
+  bxForm = e.detail.object;
+  console.log('B24 готов → поля:', bxForm.getFields().map(f => f.name));
+});
+
+// helper: ждём форму максимум N мс
+function waitBx(timeout = 7000) {
+  return new Promise(res => {
+    if (bxForm) return res();
+    const t0 = Date.now();
+    const id = setInterval(() => {
+      if (bxForm || Date.now() - t0 > timeout) {
+        clearInterval(id); res();
+      }
+    }, 200);
   });
 }
 
-/* строим дерево: category → material → [variants] */
-function buildTree(arr) {
-  const tree = new Map();
-  for (const p of arr) {
-    if (!tree.has(p.category)) tree.set(p.category, new Map());
-    const m = tree.get(p.category);
-    if (!m.has(p.name)) m.set(p.name, []);
-    m.get(p.name).push(p);
+/**************************************************************************
+ * Отправка лида
+ **************************************************************************/
+
+document.getElementById('ui-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // боремся с «форма ещё не подгрузилась»
+  await waitBx();
+  if (!bxForm) { alert('Ошибка: Bitrix-форма не подгрузилась'); return; }
+
+  // данные пользователя
+  const name  = document.getElementById('fioInp' ).value.trim();
+  const phone = document.getElementById('telInp' ).value.trim();
+  const email = document.getElementById('mailInp').value.trim();
+
+  if (!name || !phone || !leadComment) {
+    alert('Заполните ФИО, телефон и выполните расчёт'); return;
   }
-  return tree;
-}
 
-/* ---------- основной код ------------------------------------------------- */
+  /* --- мэппинг «код_поля → значение» ---
+     Откройте dev-консоль: bxForm.getFields() → смотрите name/type    */
+  bxForm.setProperty('name',  name);          // текстовое поле «Имя»
+  bxForm.setProperty('phone', phone);         // «Телефон»
+  if (email) bxForm.setProperty('email', email);
+  bxForm.setProperty('text',  leadComment);   // «Комментарий»
 
-async function main() {
-  /* --- загрузка данных --- */
-  const data = await fetch('products.json').then(r => r.json());
-  const tree = buildTree(data);
+  // автоматическая галка согласия (если поле есть)
+  const agr = bxForm.getField('agreement');
+  if (agr) agr.value = true;
 
-  /* --- элементы DOM --- */
-  const catSel = $('categorySelect');
-  const matSel = $('materialSelect');
-  const fracSel = $('fractionSelect');
-  const lenI = $('lengthInput'), widI = $('widthInput'), heiI = $('heightInput');
-  const colorInfo = $('colorInfo'), result = $('result'), img = $('preview');
-
-  /* --- наполнить категории --- */
-  fillSelect(catSel, [...tree.keys()], '— категория —', rusLabel);
-
-  /* выбор категории */
-  catSel.addEventListener('change', () => {
-    const mats = [...tree.get(catSel.value).keys()];
-    fillSelect(matSel, mats, '— Цвет —');
-    matSel.disabled = false;
-    fracSel.disabled = true;
-    fracSel.innerHTML = '';
-    reset();
+  bxForm.onSuccess(() => {
+    alert('✅ Лид отправлен!');
+    e.target.reset();
+    document.getElementById('result').textContent = '';
+    leadComment = '';
   });
 
-  /* выбор материала */
-  matSel.addEventListener('change', () => {
-    const variants = tree.get(catSel.value).get(matSel.value);
-    const fracs = [...new Set(variants.map(v => v.fraction))];
-    fillSelect(fracSel, fracs, '— фракция —');
-    fracSel.disabled = false;
-    reset();
-  });
+  bxForm.onError((err) =>
+    console.error('❌ B24 error:', err)
+  );
 
-  /* пересчитываем при любом изменении */
-  [fracSel, lenI, widI, heiI].forEach(el => el.addEventListener('input', update));
-
-  /* --- функции --- */
-  function reset() {
-    colorInfo.textContent = '';
-    result.textContent = '';
-    img.src = '';
-  }
-
-  function update() {
-    const variants = tree.get(catSel.value)?.get(matSel.value) || [];
-    const prod = variants.find(v => v.fraction === fracSel.value);
-    if (!prod) { reset(); return; }
-
-    colorInfo.textContent = `Цвет: ${prod.color}`;
-
-    const vol =
-      (parseFloat(lenI.value) || 0) *
-      (parseFloat(widI.value) || 0) *
-      (parseFloat(heiI.value) || 0);
-
-    const weight = vol * (DENSITY[prod.fraction] || 1500);  // кг
-    const cost   = weight * prod.price;                     // ₽
-
-    result.textContent =
-      `Нужно ${fmt(weight)} кг × ${prod.price} ₽ = ${fmt(cost)} ₽`;
-
-    img.src = prod.image;
-    img.alt = prod.name;
-  }
-}
-
-/* --- запуск --- */
-main().catch(err => alert('Ошибка загрузки каталога: ' + err));
+  bxForm.submit();
+});
