@@ -27,37 +27,24 @@ body {
   align-items: center;
 }
 
-/* ---------- логотип ---------- */
-.header-logo {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  margin-bottom: 1.25rem;
+/* ─── header-logo: запретить перенос и добавить зазор ──────────────────── */
+.header-logo a{
+  display:inline-flex;   /* вместо flex → inline-flex, чтобы ширина была «по контенту» */
+  align-items:center;
+  gap:1.25rem;           /* ← расстояние между SVG и текстом */
+  white-space:nowrap;    /* ВСЁ содержимое ссылки — в одну строку            */
 }
 
-.header-logo a {
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: var(--text);
-  font-weight: 600;
-  font-size: 1.05rem;
-  line-height: 1.15;
+.header-logo span{
+  white-space:nowrap;    /* запасной «страховочный» запрет переноса текста    */
 }
 
-.header-logo img {
-  width: 56px;
-  height: auto;
+/* ---------- заголовок H1 ---------- */
+h1{
+  font-size:1.75rem;
+- margin:0 0 2rem;
++ margin:0 0 2.25rem;           /* ↑ чуть ниже от логотипа */
 }
-
-h1 {
-  font-size: 1.75rem;
-  margin: 0 0 2rem;
-  font-weight: 600;
-  letter-spacing: .3px;
-  text-align: center;
-}
-
 /* ---------- карточка-калькулятор ---------- */
 #calculator {
   background: var(--bg-card);
@@ -243,7 +230,7 @@ option[disabled] { color: #9da4af; }
 /* --- скрываем авто-виджет Bitrix24, оставляем только кастомную форму --- */
 .b24-form-wrapper,                   /* основная обёртка */
 .b24-form                             /* сама форма */
-/*{ display:none !important; }
+{ display:none !important; }
 
 /* ---------- моя (видимая) форма ---------- */
 #my-form{
@@ -297,4 +284,90 @@ option[disabled] { color: #9da4af; }
   #my-form button{
     font-size:.88rem;
   }
+}
+/* ---------- МИНИ-ФОРМА (кастомная) ---------- */
+/*  Вариант А – если вы ПЕРЕИМЕНОВАЛИ форму в  id="my-form" */
+#my-form{ /* …весь блок стилизации, который у вас уже был… */ }
+
+/*  Вариант Б – если хотите оставить   id="ui-form"  */
+#ui-form{         /* скопируйте те же правила, что и для #my-form */
+  background:var(--bg-card);
+  border-radius:var(--radius);
+  box-shadow:0 6px 20px rgba(0,0,0,.06);
+  padding:1.5rem 2.25rem;
+  max-width:440px;
+  width:100%;
+  margin-top:1.5rem;
+  display:flex;
+  flex-direction:column;
+  gap:.75rem;
+}
+#ui-form input,
+#ui-form button{
+  width:100%;
+  padding:.55rem .65rem;
+  border:1px solid var(--border);
+  border-radius:4px;
+  font-size:.96rem;
+  transition:border-color .2s;
+}
+#ui-form input{background:#fff;}
+#ui-form input:focus{outline:none;border-color:var(--accent);}
+#ui-form button{
+  background:var(--accent);
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  border:none;
+}
+#ui-form button:hover{opacity:.9;}
+
+@media(max-width:480px){
+  #ui-form{
+    max-width:none;
+    border-radius:0;
+    padding:1.25rem 1rem;
+  }
+  #ui-form input,
+  #ui-form button{font-size:.88rem;}
+}
+
+/* ─── плавающая кнопка WhatsApp ────────────────────────────────────────*/
+.whatsapp-btn{
+  position:fixed;
+  right:24px;             /* отступы от края */
+  bottom:24px;
+  z-index:9999;
+
+  display:flex;
+  align-items:center;
+  gap:10px;
+
+  padding:12px 20px;
+  background:#25d366;     /* фирменный зелёный */
+  color:#fff;
+  font-weight:600;
+  font-size:1rem;
+  border-radius:999px;
+  box-shadow:0 4px 12px rgba(37,211,102,.4);
+  text-decoration:none;
+  user-select:none;
+  cursor:pointer;
+  transition:transform .15s, box-shadow .15s;
+}
+.whatsapp-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(37,211,102,.55);
+}
+.whatsapp-btn svg{flex:none; fill:currentColor;}
+
+@media (max-width:480px){
+  .whatsapp-btn{
+    padding:0;            /* делаем круглой иконкой */
+    width:60px; height:60px;
+    border-radius:50%;
+    justify-content:center;
+  }
+  .whatsapp-btn span{display:none;}   /* текст скрываем на очень узких экранах */
+  .whatsapp-btn svg{width:30px; height:30px;}
 }

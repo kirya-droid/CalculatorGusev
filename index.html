@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Калькулятор стекла — Гусевское декоративное стекло</title>
 
-  <!-- фавиконки + шрифт -->
   <link rel="icon" type="image/svg+xml" href="img/logo.svg">
   <link rel="alternate icon" type="image/png" href="img/logo-32.png">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- логотип -->
   <div class="header-logo">
     <a href="/">
       <img src="img/logo.svg" alt="">
@@ -22,7 +19,7 @@
   </div>
   <h1>Калькулятор стекла</h1>
 
-  <!-- карточка-калькулятор -->
+  <!-- КАЛЬКУЛЯТОР ---------------------------------------------------------->
   <div id="calculator">
     <label>Категория: <select id="categorySelect"></select></label>
     <label>Цвет:      <select id="materialSelect"  disabled></select></label>
@@ -32,33 +29,43 @@
 
     <fieldset>
       <legend>Габариты заполнителя (метры)</legend>
-      <label>Длина:  <input type="number" id="lengthInput"  value="1" min="0.1" step="0.1"></label>
-      <label>Ширина: <input type="number" id="widthInput"   value="1" min="0.1" step="0.1"></label>
-      <label>Высота: <input type="number" id="heightInput"  value="1" min="0.01" step="0.01"></label>
+      <label>Длина:  <input type="number" id="lengthInput" value="1" min="0.1" step="0.1"></label>
+      <label>Ширина: <input type="number" id="widthInput"  value="1" min="0.1" step="0.1"></label>
+      <label>Высота: <input type="number" id="heightInput" value="1" min="0.01" step="0.01"></label>
     </fieldset>
 
     <div id="result"></div>
     <img id="preview" alt="Фото товара">
   </div>
 
-  <!-- мини-форма (видимая) -->
-  <form id="ui-form" autocomplete="off">
+  <!-- ВАША мини-форма ------------------------------------------------------>
+  <form id="my-form" autocomplete="off">
     <input id="fioInp"  placeholder="ФИО*"      required>
     <input id="telInp"  placeholder="Телефон*"  required>
     <input id="mailInp" placeholder="Email (необязательно)" type="email">
     <button type="submit">Отправить расчёт</button>
   </form>
 
-  <!-- встроенный loader Bitrix24  (СКРЫВАТЬ НЕ НУЖНО - он рисует «родную» форму в DOM) -->
-  <script data-b24-form="inline/16/n2i46f" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.ru/b27398648/crm/form/loader_16.js');</script>
+  <!-- ВИДЖЕТ Bitrix24 (видимый для дебага) -------------------------------->
+  <script data-b24-form="inline/16/n2i46f" data-skip-moving="true">
+    (w=>{const d=document,s=d.createElement('script');s.async=true;
+        s.src='https://cdn-ru.bitrix24.ru/b27398648/crm/form/loader_16.js?'+(Date.now()/18e4|0);
+        d.head.appendChild(s);})(window);
+  </script>
+  <!-- WhatsApp: плавающая кнопка -->
+<a class="whatsapp-btn"
+   href="https://wa.me/79209117591"
+   target="_blank"
+   aria-label="Написать в WhatsApp">
+  <!-- иконка -->
+  <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+    <path fill="currentColor"
+          d="M12.04 2.3A9.7 9.7 0 002.33 12c0 1.71.44 3.37 1.29 4.84L2 22l5.3-1.37A9.66 9.66 0 0012.04 21a9.7 9.7 0 100-19.4zm5.64 14.14c-.24.67-1.41 1.3-1.98 1.38-.51.08-1.15.12-1.86-.12-.43-.15-.97-.31-1.67-.61-2.94-1.28-4.86-4.21-5-4.4-.14-.19-1.2-1.59-1.2-3.04 0-1.44.76-2.15 1.03-2.45.27-.31.6-.38.8-.38.19 0 .39.01.56.01.19 0 .42-.06.65.5.24.58.83 1.99.9 2.13.07.15.12.32.02.51-.09.19-.14.3-.28.46-.13.15-.3.34-.43.45-.15.12-.3.26-.13.51.18.25.79 1.3 1.7 2.1 1.17 1.05 2.15 1.37 2.4 1.52.25.14.4.12.55-.07.14-.19.63-.75.8-1.01.17-.26.34-.21.56-.12.23.08 1.45.69 1.7.82.25.12.42.19.48.3.06.12.06.69-.18 1.36z"/>
+  </svg>
+  <span>Написать в WhatsApp</span>
+</a>
 
-  <!-- WhatsApp-кнопка (опционально) -->
-  <a class="whatsapp-btn" href="https://wa.me/79209117591" target="_blank" aria-label="WhatsApp">
-    <!-- SVG-иконка опущена для краткости -->
-    <span>Написать в WhatsApp</span>
-  </a>
-
-  <!-- логика -->
+  <!-- ЛОГИКА --------------------------------------------------------------->
   <script src="script.js"></script>
 </body>
 </html>
