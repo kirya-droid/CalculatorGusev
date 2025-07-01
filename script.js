@@ -1,10 +1,9 @@
-/* ------------------------------------------------------------------
-   Glass-calculator + Bitrix24 integration
------------------------------------------------------------------- */
+/* ---------- константы ---------- */
 
-/* ---------- справочники ------------------------------------------------ */
+const WEBHOOK = 'https://gabrichukharchilava.bitrix24.ru/rest/12/33kovodvisef4ei9/crm.lead.add.json';
+const PLACEHOLDER_IMG = 'img/placeholder.jpg';         // дефолтная картинка
 
-const CAT_LABEL = {
+const CAT_LABEL = {                                    // slug → подпись
   erklyez:              'Эрклёз',
   obrabotannyy_erklyez: 'Обработанный эрклёз',
   shcheben:             'Щебень',
@@ -15,86 +14,73 @@ const CAT_LABEL = {
   khrustal:             'Хрусталь'
 };
 
-const DENSITY = {                 // кг/м³
-  '70-300 мм': 1400,
-  '70-150 мм': 1450,
-  '20-70 мм' : 1500,
-  '10-50 мм' : 1500,
-  '2-10 мм'  : 1600
+const DENSITY = {                                      // кг/м³
+  '70-300 мм': 1400, '70-150 мм': 1450,
+  '20-70 мм' : 1500, '10-50 мм' : 1500, '2-10 мм' : 1600
 };
 
-/* ---------- утилиты ---------------------------------------------------- */
+/* ---------- утилиты ---------- */
 
-const $   = id => document.getElementById(id);
-const fmt = n  => n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');   // 1 234 567
+const $  = id => document.getElementById(id);
+const fmt = n => n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g,' ');
 const rusLabel = raw => CAT_LABEL[raw.toLowerCase()] || raw;
 
-function fillSelect(sel, keys, placeholder, captionFn = x=>x) {
-  sel.innerHTML = `<option disabled selected>${placeholder}</option>`;
-  keys.forEach(k=>{
-     const o=document.createElement('option');
-     o.value=k; o.textContent=captionFn(k); sel.append(o);
+function fillSelect(sel, items, ph, cap=x=>x){
+  sel.innerHTML = `<option disabled selected>${ph}</option>`;
+  items.forEach(v=>{
+    const o=document.createElement('option');
+    o.value=v; o.textContent=cap(v); sel.append(o);
   });
 }
 
-function buildTree(arr){
+function buildTree(list){
   const m=new Map();
-  for(const p of arr){
+  list.forEach(p=>{
     if(!m.has(p.category)) m.set(p.category,new Map());
     const mm=m.get(p.category);
     if(!mm.has(p.name)) mm.set(p.name,[]);
     mm.get(p.name).push(p);
-  }
+  });
   return m;
 }
 
-/* ---------- основной код калькулятора ---------------------------------- */
+/* ---------- калькулятор ---------- */
 
-let leadComment = '';                             // что уйдёт в B24
-const PLACEHOLDER_IMG = 'img/placeholder.jpg';    // добавьте любую картинку
+let leadComment='';
 
-async function main(){
+async function initCalc(){
   const data = await fetch('products.json').then(r=>r.json());
   const tree = buildTree(data);
 
-  /* DOM-элементы */
   const catSel=$('categorySelect'), matSel=$('materialSelect'),
         fracSel=$('fractionSelect');
   const lenI=$('lengthInput'), widI=$('widthInput'), heiI=$('heightInput');
   const colorInfo=$('colorInfo'), result=$('result'), img=$('preview');
 
-  /* категории русским языком */
-  fillSelect(catSel, [...tree.keys()], '— категория —', rusLabel);
+  fillSelect(catSel,[...tree.keys()],'— категория —',rusLabel);
 
-  /* дефолтное изображение */
-  img.src = PLACEHOLDER_IMG;
-  img.alt = 'Выберите стекло';
+  catSel.onchange = ()=>{
+    const mats=[...tree.get(catSel.value).keys()];
+    fillSelect(matSel,mats,'— материал —');
+    matSel.disabled=false; fracSel.disabled=true; fracSel.innerHTML='';
+    reset();
+  };
 
-  /* выборы в селектах */
-  catSel.addEventListener('change', ()=>{
-     const mats=[...tree.get(catSel.value).keys()];
-     fillSelect(matSel,mats,'— материал —'); matSel.disabled=false;
-     fracSel.disabled=true; fracSel.innerHTML=''; reset();
-  });
+  matSel.onchange = ()=>{
+    const fr=[...new Set(tree.get(catSel.value).get(matSel.value).map(v=>v.fraction))];
+    fillSelect(fracSel,fr,'— фракция —');
+    fracSel.disabled=false; reset();
+  };
 
-  matSel.addEventListener('change', ()=>{
-     const fracs=[...new Set(tree.get(catSel.value).get(matSel.value).map(v=>v.fraction))];
-     fillSelect(fracSel,fracs,'— фракция —'); fracSel.disabled=false; reset();
-  });
+  [fracSel,lenI,widI,heiI].forEach(el=>el.oninput = update);
 
-  [fracSel,lenI,widI,heiI].forEach(el=> el.addEventListener('input', update));
-
-  /* вспомогалки */
   function reset(){
-    colorInfo.textContent = '';
-    result.textContent = '';
-    img.src = PLACEHOLDER_IMG;
-    img.alt = 'Выберите стекло';
+    colorInfo.textContent=''; result.textContent=''; img.src=PLACEHOLDER_IMG;
   }
 
   function update(){
-    const prodList = tree.get(catSel.value)?.get(matSel.value) || [];
-    const prod = prodList.find(v=>v.fraction === fracSel.value);
+    const list = tree.get(catSel.value)?.get(matSel.value) || [];
+    const prod = list.find(v=>v.fraction===fracSel.value);
     if(!prod){ reset(); return; }
 
     colorInfo.textContent = `Цвет: ${prod.color}`;
@@ -116,59 +102,50 @@ async function main(){
     img.alt = prod.name;
   }
 }
-main().catch(e=>alert('Ошибка загрузки каталога: '+e));
 
-/* ---------- Bitrix24-виджет -------------------------------------------- */
+/* ---------- отправка лида ---------- */
 
-let bxForm=null;                                 // экземпляр формы
+async function sendLead(name, phone, email, comment){
+  const fields = {
+    TITLE: 'Заявка с калькулятора',
+    NAME : name,
+    PHONE: [{VALUE: phone, VALUE_TYPE:'WORK'}],
+    COMMENTS: comment
+  };
+  if(email) fields.EMAIL = [{VALUE: email, VALUE_TYPE:'WORK'}];
 
-document.addEventListener('b24:form:init', e=>{
-  bxForm = e.detail.object;
-  console.log('Bitrix24 ready');
-});
-
-/* дождаться bxForm (max 7 c) */
-function waitBx(timeout=7000){
-  return new Promise((ok,fail)=>{
-    if(bxForm) return ok();
-    const t0=Date.now();
-    const id=setInterval(()=>{
-      if(bxForm){ clearInterval(id); ok(); }
-      else if(Date.now()-t0>timeout){ clearInterval(id); fail(); }
-    },200);
+  const res = await fetch(WEBHOOK,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({fields})
   });
+  const data = await res.json();
+  if(!res.ok || data.error) throw new Error(data.error_description||'Ошибка API');
+  return data.result;           // id нового лида
 }
 
-$('ui-form').addEventListener('submit', async ev=>{
-  ev.preventDefault();
+/* ---------- обработчик формы ---------- */
 
-  if(!leadComment){
-    alert('Сначала выполните расчёт.'); return;
-  }
+$('my-form').addEventListener('submit', async e=>{
+  e.preventDefault();
+
+  if(!leadComment){ alert('Сначала выполните расчёт.'); return; }
 
   const name = $('fioInp').value.trim(),
         tel  = $('telInp').value.trim(),
         mail = $('mailInp').value.trim();
 
-  if(!name || !tel){
-    alert('Заполните ФИО и телефон'); return;
+  if(!name || !tel){ alert('Заполните ФИО и телефон'); return; }
+
+  try{
+    const id = await sendLead(name,tel,mail,leadComment);
+    alert('Заявка #'+id+' успешно создана!');
+    e.target.reset();
+  }catch(err){
+    console.error(err);
+    alert('Ошибка отправки: '+err.message);
   }
-
-  await waitBx().catch(()=>{alert('Bitrix-форма не загрузилась');});
-  if(!bxForm) return;
-
-  /* заполняем поля B24 по названиям */
-  const map = { name, phone:tel, email:mail, text:leadComment, comment:leadComment };
-  bxForm.getFields().forEach(f=>{
-    const code = (f.code||f.name||'').toLowerCase();
-    for(const k in map){
-      if(code.includes(k) && map[k]) bxForm.setFieldValue(f.name,map[k]);
-    }
-    if(code.includes('agree')) bxForm.setFieldValue(f.name,'Y');
-  });
-
-  /* отправляем и очищаем форму */
-  bxForm.submit();
-  ev.target.reset();
-  alert('Заявка отправлена!');
 });
+
+/* ---------- старт ---------- */
+initCalc().catch(err=>alert('Ошибка загрузки каталога: '+err));
